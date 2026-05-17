@@ -1,0 +1,6 @@
+{
+  "name": "Bistro",
+  "description": "A luxury restaurant ecosystem featuring AI-powered sommelier recommendations, a high-fashion ordering interface, real-time kitchen flow management, and interactive digital critiques.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": []
+}

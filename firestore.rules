@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    match /menu_items/{item} {
+      allow read: if true;
+      allow write: if true; // In real app, only admin
+    }
+
+    match /orders/{order} {
+      allow read, create: if true;
+      allow update: if true; // For kitchen/admin status updates
+    }
+
+    match /feedback/{feedback} {
+      allow read, create: if true;
+    }
+    
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

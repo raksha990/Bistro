@@ -1,0 +1,63 @@
+{
+  "entities": {
+    "MenuItem": {
+      "title": "Menu Item",
+      "description": "Represents a food or drink item in the restaurant menu.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "category": { "type": "string", "enum": ["South Indian", "North Indian", "Snacks", "Desserts", "Ice Creams", "Juices", "Combos"] },
+        "image": { "type": "string" },
+        "isVeg": { "type": "boolean" },
+        "rating": { "type": "number" },
+        "popularity": { "type": "number" }
+      },
+      "required": ["name", "price", "category", "isVeg"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Represents a customer order.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tableId": { "type": "string" },
+        "items": { "type": "array" },
+        "total": { "type": "number" },
+        "status": { "type": "string", "enum": ["pending", "accepted", "preparing", "ready", "completed"] },
+        "customerType": { "type": "string", "enum": ["Couple", "Friends", "Family", "Alone"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "customNotes": { "type": "string" }
+      },
+      "required": ["tableId", "items", "total", "status"]
+    },
+    "Feedback": {
+      "title": "Feedback",
+      "description": "Represents customer feedback.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "rating": { "type": "number" },
+        "comment": { "type": "string" },
+        "emoji": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "/menu_items/{itemId}": {
+      "schema": "MenuItem",
+      "description": "Collection of all food and drink items."
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Collection of customer orders."
+    },
+    "/feedback/{feedbackId}": {
+      "schema": "Feedback",
+      "description": "Collection of customer feedback."
+    }
+  }
+}
